@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Date Conversion</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('#inputDate').datepicker({
+      format: 'dd/mm/yyyy',
+      autoclose: true,
+      todayHighlight: true
+    });
+  });
+
+  function convertDateTime() {
+    var inputDate = document.getElementById("inputDate").value;
+    var inputTime = document.getElementById("inputTime").value;
+
+    if (inputDate === "" || inputTime === "") {
+      alert("Please enter both date and time.");
+      return;
+    }
+
+    var dateParts = inputDate.split("/");
+    var formattedDate = dateParts[1] + "/" + dateParts[0] + "/" + dateParts[2] + " " + inputTime;
+
+    var dateIST = new Date(formattedDate);
+
+    var optionsIST = { timeZone: 'Asia/Kolkata', hour12: true };
+    var dateISTFormatted = dateIST.toLocaleString('en-US', optionsIST);
+
+    var optionsPST = { timeZone: 'America/Los_Angeles', hour12: true };
+    var datePST = dateIST.toLocaleString('en-US', optionsPST);
+
+    document.getElementById("dateIST").textContent = dateISTFormatted;
+    document.getElementById("datePST").textContent = datePST;
+  }
+</script>
+</head>
+<body>
+<div class="container mt-5">
+  <h1>Date and Time Conversion</h1>
+  <div class="form-group">
+    <label for="inputDate">Date:</label>
+    <input type="text" class="form-control" id="inputDate" placeholder="Select date">
+  </div>
+  <div class="form-group">
+    <label for="inputTime">Time (HH:MM AM/PM):</label>
+    <input type="text" class="form-control" id="inputTime" placeholder="Enter time (HH:MM AM/PM)">
+  </div>
+  <button class="btn btn-primary" onclick="convertDateTime()">Convert</button>
+  <br>
+  <br>
+  <p><strong>IST:</strong> <span id="dateIST"></span></p>
+  <p><strong>PST:</strong> <span id="datePST"></span></p>
+</div>
+</body>
+</html>

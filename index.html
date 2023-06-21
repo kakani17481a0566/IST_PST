@@ -13,21 +13,25 @@
 </head>
 <body>
   <div class="container">
-    <h1>IST Time Converter</h1>
-    <form id="timeConverterForm">
-      <div class="form-group">
-        <label for="datePicker">Select a Date:</label>
-        <input type="date" id="datePicker" class="form-control" required>
+    <div class="card">
+      <h5 class="card-header">IST Time Converter</h5>
+      <div class="card-body">
+        <form id="timeConverterForm">
+          <div class="form-group">
+            <label for="datePicker">Select a Date:</label>
+            <input type="date" id="datePicker" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="timePicker">Select a Time:</label>
+            <input type="time" id="timePicker" class="form-control" required pattern="(1[012]|0[1-9]):[0-5][0-9](\s)?(AM|PM|am|pm)" title="Please enter a time in AM/PM format.">
+          </div>
+          <button type="submit" class="btn btn-primary">Convert</button>
+        </form>
+        <div id="output" style="margin-top: 20px; display: none;">
+          <h5 class="card-title">Converted Time:</h5>
+          <p class="card-text" id="convertedTime"></p>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="timePicker">Select a Time:</label>
-        <input type="time" id="timePicker" class="form-control" required>
-      </div>
-      <button type="submit" class="btn btn-primary">Convert</button>
-    </form>
-    <div id="output" style="margin-top: 20px; display: none;">
-      <h4>Converted Time:</h4>
-      <p id="convertedTime"></p>
     </div>
   </div>
 
